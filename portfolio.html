@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CV — todo bla bla</title>
+
+<style>
+:root{
+  --bg:#0d0d0d; --panel:#161616; --ink:#f5f5f5; --muted:#a0a0a0;
+  --radius:28px; --ring:0 0 0 2px rgba(180,180,180,.2),0 0 40px rgba(200,200,200,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Inter,system-ui,sans-serif;
+  background:linear-gradient(180deg,#0e0e0e 0%,#1a1a1a 100%);
+  color:var(--ink);
+  overflow-x:hidden;
+}
+
+/* ====== SECCIÓN 1 ====== */
+.wrap{max-width:1200px;margin:64px auto;padding:0 24px}
+h1{text-align:center;font-weight:800;font-size:clamp(32px,4vw,56px);margin-bottom:18px;}
+.kicker{text-align:center;color:var(--muted);margin-bottom:28px}
+
+.tabs{
+  display:flex;gap:12px;align-items:center;justify-content:center;
+  margin:0 auto;padding:10px;border-radius:20px;
+  background:linear-gradient(180deg,#181818,#1f1f1f);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.08), 0 8px 30px rgba(0,0,0,.35);
+  position:relative;isolation:isolate;width:max-content;
+}
+.tab{appearance:none;background:none;border:none;padding:10px 16px;
+  cursor:pointer;font-weight:600;color:var(--muted);transition:color .2s,transform .15s}
+.tab:hover{color:#d0d0d0;transform:translateY(-1px)}
+.tab[aria-selected="true"]{color:#fff}
+.pill{
+  position:absolute;inset:4px;translate:var(--x,0) 0;width:var(--w,120px);
+  border-radius:999px;z-index:-1;
+  background:linear-gradient(180deg,#3a3a3a,#555);
+  box-shadow:var(--ring);
+  transition:translate .35s cubic-bezier(.2,.8,.2,1), width .35s cubic-bezier(.2,.8,.2,1);
+}
+
+.panel{
+  margin-top:30px;border-radius:var(--radius);
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.01)),var(--panel);
+  border:1px solid rgba(255,255,255,.07);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 20px 60px rgba(0,0,0,.5);
+  padding:24px;
+}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(12,1fr)}
+@media(max-width:900px){.grid{grid-template-columns:repeat(6,1fr)}}
+@media(max-width:640px){.grid{grid-template-columns:repeat(1,1fr)}}
+.card{
+  grid-column:span 4;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:16px;
+  transition:transform .25s,box-shadow .25s,border-color .25s;
+}
+.card:hover{transform:translateY(-4px);border-color:rgba(200,200,200,.4);
+  box-shadow:0 10px 40px rgba(200,200,200,.08),0 10px 30px rgba(150,150,150,.05)}
+.thumb{
+  aspect-ratio:16/9;border-radius:14px;overflow:hidden;margin-bottom:12px;
+  background:radial-gradient(120% 100% at 0% 0%,rgba(255,255,255,.1),rgba(255,255,255,.04));
+  display:grid;place-items:center;color:#aaa;font-size:14px;letter-spacing:.08em;
+  border:1px dashed rgba(255,255,255,.15);
+}
+.card h3{margin:0 0 4px;font-size:18px}
+.meta{color:var(--muted);font-size:13px;margin-bottom:8px}
+.desc{color:#ddd;font-size:14px;line-height:1.4}
+
+/* ====== SECCIÓN 2 ====== */
+.split{display:grid;grid-template-columns:0.9fr 1.5fr;height:100vh;}
+.sidebar{background:var(--panel);position:sticky;top:0;height:100vh;
+  padding:40px 32px;display:flex;flex-direction:column;justify-content:center;
+  gap:24px;border-top:1px solid #222;border-right:1px solid #222;}
+.step{opacity:.45;transition:opacity .25s}
+.step.active,.step.unlocked{opacity:1}
+.step.locked button{cursor:not-allowed;opacity:.35}
+.step button{all:unset;cursor:pointer;display:block;font-size:1.4rem;
+  font-weight:800;margin-bottom:8px;}
+.panelDrop{max-height:0;overflow:hidden;transition:max-height .38s,opacity .28s;opacity:0}
+.panelDrop.open{max-height:260px;opacity:1}
+.panelDrop p{color:var(--muted);font-size:.95rem;line-height:1.45}
+
+.stage{height:100vh;overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth}
+.slide{height:100vh;scroll-snap-align:start;display:flex;align-items:center;
+  justify-content:center;flex-direction:column;background:#111;
+  border-bottom:1px solid #1e1e1e}
+.slide h2{margin-top:18px;font-size:1.5rem;color:#cfcfcf}
+</style>
+</head>
+
+<body>
+
+<!-- ======== SECCIÓN 1 ======== -->
+<main class="wrap">
+  <h1>bla bla</h1>
+  <div class="kicker">bla bla</div>
+
+  <div class="tabs" role="tablist">
+    <div class="pill" aria-hidden="true"></div>
+    <button class="tab" aria-selected="true" data-tab="formal">bla bla</button>
+    <button class="tab" aria-selected="false" data-tab="noformal">bla bla</button>
+    <button class="tab" aria-selected="false" data-tab="hobbies">bla bla</button>
+  </div>
+
+  <section class="panel" id="panel">
+    <div class="view" data-view="formal">
+      <div class="grid">
+        <article class="card"><div class="thumb">bla bla</div>
+          <h3>bla bla</h3>
+          <div class="meta">bla bla</div>
+          <p class="desc">bla bla bla bla bla bla.</p></article>
+        <article class="card"><div class="thumb">bla bla</div>
+          <h3>bla bla</h3><div class="meta">bla bla</div>
+          <p class="desc">bla bla bla bla.</p></article>
+        <article class="card"><div class="thumb">bla bla</div>
+          <h3>bla bla</h3><div class="meta">bla bla</div>
+          <p class="desc">bla bla bla bla.</p></article>
+      </div>
+    </div>
+
+    <div class="view" data-view="noformal" hidden>
+      <div class="grid">
+        <article class="card"><div class="thumb">bla</div>
+          <h3>bla</h3><div class="meta">bla</div>
+          <p class="desc">bla bla bla.</p></article>
+        <article class="card"><div class="thumb">bla</div>
+          <h3>bla</h3><p class="desc">bla bla.</p></article>
+        <article class="card"><div class="thumb">bla</div>
+          <h3>bla</h3><p class="desc">bla bla.</p></article>
+      </div>
+    </div>
+
+    <div class="view" data-view="hobbies" hidden>
+      <div class="grid">
+        <article class="card"><div class="thumb">bla</div><h3>bla</h3></article>
+        <article class="card"><div class="thumb">bla</div><h3>bla</h3></article>
+        <article class="card"><div class="thumb">bla</div><h3>bla</h3></article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ======== SECCIÓN 2 ======== -->
+<section class="split">
+  <aside class="sidebar">
+    <ul id="steps">
+      <li class="step active" data-step="1">
+        <button>bla</button>
+        <div class="panelDrop open"><p>bla bla bla</p></div>
+      </li>
+      <li class="step locked" data-step="2">
+        <button>bla</button>
+        <div class="panelDrop"><p>bla bla bla</p></div>
+      </li>
+      <li class="step locked" data-step="3">
+        <button>bla</button>
+        <div class="panelDrop"><p>bla bla bla</p></div>
+      </li>
+    </ul>
+  </aside>
+
+  <div class="stage" id="stage">
+    <article class="slide" data-step="1">
+      <div style="width:80%;max-width:800px;aspect-ratio:16/9;
+        background:repeating-linear-gradient(45deg,#3a3a3a 0 40px,#444 40px 80px);
+        border-radius:12px;"></div>
+      <h2>bla bla</h2>
+    </article>
+
+    <article class="slide" data-step="2">
+      <div style="width:80%;max-width:800px;aspect-ratio:16/9;
+        background:repeating-linear-gradient(90deg,#333 0 40px,#3f3f3f 40px 80px);
+        border-radius:12px;"></div>
+      <h2>bla bla</h2>
+    </article>
+
+    <article class="slide" data-step="3">
+      <div style="width:80%;max-width:800px;aspect-ratio:16/9;
+        background:repeating-linear-gradient(135deg,#2f2f2f 0 40px,#444 40px 80px);
+        border-radius:12px;"></div>
+      <h2>bla bla</h2>
+    </article>
+  </div>
+</section>
+
+<script>
+/* ---- Tabs Educación ---- */
+const tabs=[...document.querySelectorAll(".tab")];
+const views=[...document.querySelectorAll(".view")];
+const pill=document.querySelector(".pill");
+function setPill(el){const r=el.getBoundingClientRect(),p=el.parentElement.getBoundingClientRect();
+  pill.style.setProperty("--x",(r.left-p.left)+"px");
+  pill.style.setProperty("--w",r.width+"px");}
+function activate(tab){
+  tabs.forEach(t=>t.setAttribute("aria-selected",String(t===tab)));
+  const n=tab.dataset.tab;
+  views.forEach(v=>v.hidden=v.dataset.view!==n);
+  setPill(tab);
+}
+window.addEventListener("load",()=>setPill(document.querySelector('.tab[aria-selected="true"]')));
+tabs.forEach(t=>t.addEventListener("click",()=>activate(t)));
+
+/* ---- Sección Interactiva ---- */
+const stage=document.getElementById('stage');
+const slides=[...stage.querySelectorAll('.slide')];
+const steps=[...document.querySelectorAll('.step')];
+let current=1,timer=null;
+
+function closeAll(){
+  steps.forEach(s=>{
+    s.classList.remove('active');
+    s.querySelector('.panelDrop').classList.remove('open');
+  });
+}
+function openOnly(n){
+  closeAll();
+  const s=document.querySelector(`.step[data-step="${n}"]`);
+  if(!s)return;
+  s.classList.add('active');s.classList.remove('locked');
+  s.querySelector('.panelDrop').classList.add('open');
+  const next=document.querySelector(`.step[data-step="${n+1}"]`);
+  if(next) next.classList.remove('locked');
+  current=n;
+}
+function setActive(n){
+  if(n===current)return;
+  if(timer){clearTimeout(timer);timer=null;}
+  closeAll();
+  timer=setTimeout(()=>{openOnly(n);},380);
+}
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){setActive(Number(e.target.dataset.step));}});
+},{root:stage,threshold:0.6});
+slides.forEach(s=>io.observe(s));
+steps.forEach(s=>{
+  s.querySelector('button').addEventListener('click',()=>{
+    if(s.classList.contains('locked'))return;
+    const n=Number(s.dataset.step);
+    const target=stage.querySelector(`.slide[data-step="${n}"]`);
+    if(target) target.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+
+<!-- ========= SKILLS / MARQUEE UNA SOLA LÍNEA ========= -->
+<section class="skills-band" aria-label="bla bla">
+  <h2 class="skills-title">bla bla</h2>
+
+  <div class="marquee" data-speed="40">
+    <ul class="track">
+      <li class="bubble">bla bla</li>
+      <li class="bubble">bla bla</li>
+      <li class="bubble">bla bla</li>
+      <li class="bubble">bla bla</li>
+      <li class="bubble">bla bla</li>
+      <li class="bubble">bla bla</li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  .skills-band{
+    padding:48px 0;
+    border-top:1px solid #222;
+    border-bottom:1px solid #222;
+    background:var(--panel,#161616);
+  }
+  .skills-title{
+    max-width:1200px; margin:0 auto 18px; padding:0 24px;
+    font-weight:800; font-size:clamp(22px,3.2vw,36px); color:var(--ink,#f5f5f5);
+    text-align:center;
+  }
+  .marquee{
+    --mask: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 8%, rgba(0,0,0,1) 92%, rgba(0,0,0,0) 100%);
+    mask-image: var(--mask); -webkit-mask-image: var(--mask);
+    overflow:hidden; white-space:nowrap; position:relative;
+    border-top:1px solid #202020; border-bottom:1px solid #202020;
+  }
+  .track{
+    display:flex; gap:16px; align-items:center;
+    padding:16px 24px; list-style:none; margin:0;
+    animation: scroll-left linear infinite;
+  }
+
+  .bubble{
+    padding:10px 16px; border-radius:999px;
+    background:linear-gradient(180deg,#2a2a2a,#3a3a3a);
+    color:#d9d9d9; font-weight:700; letter-spacing:.02em;
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.03), 0 8px 14px rgba(0,0,0,.35);
+    user-select:none; flex:0 0 auto;
+  }
+
+  @keyframes scroll-left{
+    from{ transform: translateX(0); }
+    to{   transform: translateX(-50%); }
+  }
+
+  @media (max-width: 740px){
+    .bubble{ padding:8px 12px; font-weight:600 }
+  }
+</style>
+
+<script>
+  // Loop infinito para una sola línea
+  document.querySelectorAll('.marquee').forEach(mq=>{
+    const track = mq.querySelector('.track');
+    const speed = Number(mq.dataset.speed || 40);
+    const ensureLoop = ()=>{
+      const containerW = mq.clientWidth || window.innerWidth;
+      while(track.scrollWidth < containerW * 2){
+        track.innerHTML += track.innerHTML;
+      }
+      const halfWidth = track.scrollWidth / 2;
+      const duration = halfWidth / speed;
+      track.style.animationDuration = `${duration}s`;
+    };
+    ensureLoop();
+    let to=null;
+    window.addEventListener('resize', ()=>{
+      clearTimeout(to);
+      to=setTimeout(()=>{
+        const firstSix = [...track.children].slice(0,6).map(li=>li.cloneNode(true));
+        track.innerHTML = '';
+        firstSix.forEach(li=>track.appendChild(li));
+        ensureLoop();
+      },150);
+    });
+  });
+</script>
+
+<!-- ========= CONTACTO ========= -->
+<section class="contact-wrap" id="contacto" aria-label="Contacto">
+  <div class="contact-card">
+    <!-- Lado izquierdo: formulario -->
+    <form class="contact-form" id="cvContactForm" novalidate>
+      <h2 class="contact-title">Contacto</h2>
+
+      <label class="field">
+        <span>Nombre</span>
+        <input type="text" name="name" placeholder="Tu nombre" required />
+      </label>
+
+      <label class="field">
+        <span>Mensaje</span>
+        <textarea name="message" rows="5" placeholder="Tu mensaje..." required></textarea>
+      </label>
+
+      <button class="send-btn" type="submit">Enviar</button>
+      <p class="form-note" id="cvFormNote" hidden>¡Gracias! Ya recibí tu mensaje.</p>
+    </form>
+
+    <!-- Lado derecho: iconos horizontales -->
+    <aside class="contact-icons">
+      <a class="icon-btn" href="https://www.linkedin.com/in/tuperfil" target="_blank" aria-label="LinkedIn">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.05h.05c.53-1 1.84-2.05 3.79-2.05 4.05 0 4.8 2.67 4.8 6.15V23h-4v-7.4c0-1.77-.03-4.06-2.48-4.06-2.49 0-2.87 1.94-2.87 3.94V23h-4V8z"/></svg>
+      </a>
+
+      <a class="icon-btn" href="mailto:tuemail@example.com" aria-label="Mail">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 13 2 6.76V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v.76L12 13zm0 2 10-6.24V18a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-9.24L12 15z"/></svg>
+      </a>
+
+      <a class="icon-btn" href="https://github.com/tuusuario" target="_blank" aria-label="GitHub">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.55-1.41-1.35-1.79-1.35-1.79-1.1-.76.08-.75.08-.75 1.22.09 1.86 1.26 1.86 1.26 1.08 1.85 2.83 1.31 3.52 1 .11-.79.42-1.31.76-1.61-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.39 1.24-3.23-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.65.24 2.87.12 3.17.77.84 1.23 1.92 1.23 3.23 0 4.61-2.81 5.63-5.49 5.93.43.37.82 1.1.82 2.22v3.29c0 .32.21.7.83.58A12 12 0 0 0 12 .5z"/></svg>
+      </a>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .contact-wrap{padding:56px 24px}
+  .contact-card{
+    max-width:1200px;margin:0 auto;
+    background:var(--panel,#161616);
+    border:1px solid #262626;
+    border-radius:28px;
+    display:grid;grid-template-columns:1.1fr 1px 0.9fr;
+    align-items:center;
+    overflow:hidden;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.04), 0 20px 60px rgba(0,0,0,.45);
+  }
+
+  .contact-card::before{
+    content:""; grid-column:2; grid-row:1;
+    width:1px; height:100%;
+    background:#2a2a2a;
+  }
+
+  /* izquierda: formulario */
+  .contact-form{
+    grid-column:1; padding:40px 32px;
+    display:flex; flex-direction:column; gap:18px;
+  }
+  .contact-title{font-size:clamp(22px,2.8vw,28px); font-weight:800; margin-bottom:6px}
+  .field{display:flex; flex-direction:column; gap:8px}
+  .field span{font-size:14px; color:#cfcfcf}
+  .field input,.field textarea{
+    background:linear-gradient(180deg,#1b1b1b,#1f1f1f);
+    border:1px solid #2a2a2a; color:#e9e9e9;
+    border-radius:18px; padding:12px 14px; outline:none;
+    transition:border-color .2s, box-shadow .2s;
+  }
+  .field input:focus,.field textarea:focus{
+    border-color:#3a3a3a;
+    box-shadow:0 0 0 3px rgba(200,200,200,.08);
+  }
+  .send-btn{
+    align-self:flex-start;
+    padding:12px 20px; border-radius:999px;
+    border:1px solid #2a2a2a;
+    background:linear-gradient(180deg,#2b2b2b,#3a3a3a);
+    color:#f3f3f3; font-weight:800;
+    letter-spacing:.02em; cursor:pointer;
+    transition:transform .15s, filter .2s, border-color .2s;
+  }
+  .send-btn:hover{filter:brightness(1.05)}
+  .send-btn:active{transform:translateY(1px)}
+  .form-note{font-size:14px; color:#bfbfbf; margin-top:6px}
+
+  /* derecha: íconos horizontales */
+  .contact-icons{
+    grid-column:3; display:flex;
+    justify-content:center; gap:28px;
+    padding:40px 0;
+  }
+  .icon-btn{
+    display:grid; place-items:center;
+    width:64px; height:64px;
+    border-radius:20px;
+    background:linear-gradient(180deg,#1d1d1d,#282828);
+    border:1px solid #2a2a2a;
+    color:#e3e3e3;
+    transition:filter .2s, transform .15s, border-color .2s;
+  }
+  .icon-btn:hover{
+    filter:brightness(1.15);
+    border-color:#3a3a3a;
+    transform:translateY(-3px);
+  }
+
+  @media (max-width:900px){
+    .contact-card{grid-template-columns:1fr; text-align:center}
+    .contact-card::before{display:none}
+    .contact-icons{padding-top:20px; padding-bottom:30px}
+  }
+</style>
+
+<script>
+  // manejo simple del form
+  const cvForm = document.getElementById('cvContactForm');
+  const cvNote = document.getElementById('cvFormNote');
+  cvForm.addEventListener('submit', e=>{
+    e.preventDefault();
+    cvNote.hidden = false;
+    cvForm.reset();
+    setTimeout(()=>cvNote.hidden=true,4000);
+  });
+</script>
+
+
+</body>
+</html>
