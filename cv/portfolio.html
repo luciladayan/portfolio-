@@ -75,6 +75,15 @@ h1.sec-title{text-align:center;font-weight:800;font-size:clamp(32px,4vw,56px);ma
 .meta{color:var(--muted);font-size:13px;margin-bottom:8px}
 .desc{color:#ddd;font-size:14px;line-height:1.4}
 
+/* Todas las tarjetas con la misma altura */
+.card {
+  height: 170px;  /* puedes ajustar este valor */
+  display: flex;
+  flex-direction: column;
+}
+
+
+
 /* ====== “Desktop de Proyectos” ====== */
 .desktop-wrap{max-width:1300px;margin:90px auto 0;padding:0 24px}
 .window{border-radius:20px; border:1px solid #2a2a2a; background:linear-gradient(180deg,#131313,#171717); box-shadow:inset 0 1px 0 rgba(255,255,255,.04), 0 20px 60px rgba(0,0,0,.5); overflow:hidden}
@@ -122,19 +131,7 @@ h1.sec-title{text-align:center;font-weight:800;font-size:clamp(32px,4vw,56px);ma
 .btn:hover{filter:brightness(1.05)}
 @keyframes fade{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:translateY(0)}}
 
-/* ====== SECCIÓN INTERACTIVA (tu scroll de pasos) ====== */
-.split{display:grid;grid-template-columns:0.9fr 1.5fr;height:100vh; margin-top:90px}
-.sidebar{background:var(--panel);position:sticky;top:0;height:100vh; padding:40px 32px;display:flex;flex-direction:column;justify-content:center; gap:24px;border-top:1px solid #222;border-right:1px solid #222}
-.step{opacity:.45;transition:opacity .25s}
-.step.active,.step.unlocked{opacity:1}
-.step.locked button{cursor:not-allowed;opacity:.35}
-.step button{all:unset;cursor:pointer;display:block;font-size:1.4rem; font-weight:800;margin-bottom:8px}
-.panelDrop{max-height:0;overflow:hidden;transition:max-height .38s,opacity .28s;opacity:0}
-.panelDrop.open{max-height:260px;opacity:1}
-.panelDrop p{color:var(--muted);font-size:.95rem;line-height:1.45}
-.stage{height:100vh;overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth}
-.slide{height:100vh;scroll-snap-align:start;display:flex;align-items:center; justify-content:center;flex-direction:column;background:#111; border-bottom:1px solid #1e1e1e}
-.slide h2{margin-top:18px;font-size:1.5rem;color:#cfcfcf}
+
 
 /* ====== SKILLS / MARQUEE ====== */
 .skills-band{padding:48px 0; border-top:1px solid #222; border-bottom:1px solid #222; background:var(--panel)}
@@ -148,7 +145,7 @@ h1.sec-title{text-align:center;font-weight:800;font-size:clamp(32px,4vw,56px);ma
 /* separación entre proyectos / timeline y Superpoderes */
 .skills-band {
   margin-top: 140px;
-  padding-top: 80px;
+  padding-top: 40px;
   border-top: 1.5px solid #2d2d2d;
   position: relative;
 }
@@ -183,7 +180,7 @@ h1.sec-title{text-align:center;font-weight:800;font-size:clamp(32px,4vw,56px);ma
 
 <body>
 <!-- ======== HERO ======== -->
-<section class="hero" aria-label="Presentación">
+<section class="hero" id="about" aria-label="Presentación">
   <canvas id="aurora"></canvas>
   <div class="halo"></div>
 
@@ -198,8 +195,21 @@ h1.sec-title{text-align:center;font-weight:800;font-size:clamp(32px,4vw,56px);ma
   </div>
 </section>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- ======== SECCIÓN 1 ======== -->
-<main class="wrap">
+<main class="wrap" id="formacion">
   <h1 class="sec-title">Formación y experiencias</h1>
   <div class="kicker">Selección rápida</div>
 
@@ -218,7 +228,6 @@ h1.sec-title{text-align:center;font-weight:800;font-size:clamp(32px,4vw,56px);ma
 
         <!-- Primaria -->
         <article class="card">
-          <div class="thumb">Primaria</div>
           <h3>Yeshurum Torá</h3>
           <div class="meta">2010–2020</div>
           <p class="desc">Formación general, valores comunitarios y bases académicas sólidas.</p>
@@ -226,7 +235,6 @@ h1.sec-title{text-align:center;font-weight:800;font-size:clamp(32px,4vw,56px);ma
 
         <!-- Secundaria -->
         <article class="card">
-          <div class="thumb">Secundaria</div>
           <h3>ORT Argentina — TIC</h3>
           <div class="meta">2021–2025</div>
           <p class="desc">Orientación en Tecnología de la Información y la Comunicación con foco en desarrollo web e inteligencia artificial.</p>
@@ -234,7 +242,6 @@ h1.sec-title{text-align:center;font-weight:800;font-size:clamp(32px,4vw,56px);ma
 
         <!-- Intercambio a Londres -->
         <article class="card">
-          <div class="thumb">Intercambio</div>
           <h3>Intercambio académico a Londres</h3>
           <div class="meta">Goldsmiths, University of London • Abr. 2023</div>
           <p class="desc">
@@ -251,23 +258,20 @@ h1.sec-title{text-align:center;font-weight:800;font-size:clamp(32px,4vw,56px);ma
 
         <!-- Escuela de Líderes -->
         <article class="card">
-          <div class="thumb">Liderazgo</div>
           <h3>Escuela de Líderes — Hebraica</h3>
           <div class="meta">2022–2024</div>
-          <p class="desc">Formación en dinámicas grupales, rol educativo, liderazgo y trabajo comunitario.</p>
+          <p class="desc">Formación en dinámicas grupales, rol educativo, liderazgo y trabajo comunitario.</p></p></p>
         </article>
 
-        <!-- Madrijá / Lider comunitaria -->
+        <!-- Madrijá -->
         <article class="card">
-          <div class="thumb">Madrijá</div>
           <h3>Líder comunitaria — Hebraica</h3>
           <div class="meta">2024–2025</div>
           <p class="desc">Coordinación de grupos, armado de actividades y acompañamiento pedagógico de chicos y chicas.</p>
         </article>
 
-        <!-- Otros / participación -->
+        <!-- Otros -->
         <article class="card">
-          <div class="thumb">Participación</div>
           <h3>Proyectos y eventos</h3>
           <p class="desc">Participación activa en espacios educativos, campamentos y propuestas comunitarias.</p>
         </article>
@@ -280,27 +284,22 @@ h1.sec-title{text-align:center;font-weight:800;font-size:clamp(32px,4vw,56px);ma
       <div class="grid">
 
         <article class="card">
-          <div class="thumb">Español</div>
           <h3>Español</h3>
           <div class="meta">Lengua nativa</div>
           <p class="desc">Comunicación oral y escrita fluida en contextos académicos, sociales y profesionales.</p>
         </article>
 
         <article class="card">
-          <div class="thumb">Hebreo</div>
           <h3>Hebreo</h3>
           <div class="meta">Nivel intermedio</div>
-          <p class="desc">
-            Aproximadamente 5 años de estudio durante la primaria, con práctica en contexto escolar y comunitario.
-          </p>
+          <p class="desc">5 años de estudio en la primaria, con práctica en contexto escolar y comunitario.</p>
         </article>
 
         <article class="card">
-          <div class="thumb">Inglés</div>
           <h3>Inglés</h3>
           <div class="meta">Nivel avanzado</div>
           <p class="desc">
-            Rendí exámenes de Cambridge (KET, PET y First) y TOEFL. Estudié en primaria, secundaria, instituto y con profesora particular, además de practicar en el intercambio en Londres.
+            Rendí exámenes de Cambridge (KET, PET, First) y TOEFL. Formación en escuela, instituto, profesora particular y práctica en el intercambio en Londres.
           </p>
         </article>
 
@@ -309,6 +308,12 @@ h1.sec-title{text-align:center;font-weight:800;font-size:clamp(32px,4vw,56px);ma
 
   </section>
 </main>
+ 
+
+
+
+
+
 
 
 
@@ -321,18 +326,45 @@ h1.sec-title{text-align:center;font-weight:800;font-size:clamp(32px,4vw,56px);ma
 
 
 <!-- ======== “DESKTOP DE PROYECTOS” ======== -->
-<section class="desktop-wrap" aria-label="Proyectos">
+<section class="desktop-wrap" id="proyectos" aria-label="Proyectos">
+
   <div class="window">
     <div class="win-top">
-      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <div class="dots">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+      </div>
       <div class="win-title">/Mi Computadora/Proyectos</div>
     </div>
 
     <div class="win-body">
       
-      <!-- ==== SIDEBAR ==== -->
+
+
+
+
+
+
+
+
+
+
+            <!-- ==== SIDEBAR ==== -->
       <aside class="win-sidebar" id="folders">
-        <div class="folder" data-proj="p1" aria-selected="true">
+
+
+        <div class="folder" data-proj="p3"  aria-selected="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M3 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"
+              stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <strong>Etiketa</strong>
+        </div>
+
+
+
+        <div class="folder" data-proj="p1">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
             <path d="M3 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"
               stroke="currentColor" stroke-width="1.5"/>
@@ -348,39 +380,61 @@ h1.sec-title{text-align:center;font-weight:800;font-size:clamp(32px,4vw,56px);ma
           <strong>EasyTech</strong>
         </div>
 
-        <div class="folder" data-proj="p3">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <path d="M3 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"
-              stroke="currentColor" stroke-width="1.5"/>
-          </svg>
-          <strong>Etiketa</strong>
-        </div>
+        
       </aside>
+
+
+
+
+
+      
+
 
       <!-- ==== CONTENIDO PRINCIPAL ==== -->
       <div class="win-main">
 
-        <!-- PrintMe -->
-        <div class="proj active" id="p1">
+        <!-- ==================================== -->
+        <!--               ETIKETA                -->
+        <!-- ==================================== -->
+        <div class="proj active" id="p3">
           <div class="preview" aria-hidden="true">
-
-          
-         <video controls autoplay muted loop style="width:100%; height:100%; object-fit:cover; border-radius:14px;">
-  <source src="../videos/printme-demo.mp4" type="video/mp4" />
-  Tu navegador no soporta este video.
-</video>
-
-
-        
-
+            <video controls autoplay muted loop
+              style="width:100%; height:100%; object-fit:cover; border-radius:14px;">
+              <source src="../videos/WhatsApp Video 2025-11-21 at 12.38.21 PM.mp4" type="video/mp4" />
+              Tu navegador no soporta este video.
+            </video>
           </div>
 
-          <h3>PrintMe</h3>
+          <h3>Etiketa - 2025</h3>
+          <div class="meta">Algoritmos • Python • Scraping</div>
+
+          <p class="desc">
+            Proyecto que analiza productos cosméticos según sus ingredientes, asignando puntajes de riesgo y detectando combinaciones efectivas.
+          </p>
+
+          <p class="desc">
+            Mi rol incluye scrapers en Python, construcción de una base de datos de ingredientes y desarrollo de la lógica de análisis y scoring.
+          </p>
+        </div>
+
+        <!-- ==================================== -->
+        <!--               PRINTME               -->
+        <!-- ==================================== -->
+        <div class="proj" id="p1">
+          <div class="preview" aria-hidden="true">
+            <video controls autoplay muted loop
+              style="width:100%; height:100%; object-fit:cover; border-radius:14px;">
+              <source src="../videos/printme-demo.mp4" type="video/mp4" />
+              Tu navegador no soporta este video.
+            </video>
+          </div>
+
+          <h3>PrintMe - 2024</h3>
           <div class="meta">Frontend • HTML • CSS • JavaScript</div>
 
           <p class="desc">
             Plataforma web que conecta a personas que necesitan impresiones 3D con dueños de impresoras registradas.
-            El objetivo es facilitar el acceso a impresiones sin tener una impresora propia, generando a la vez un ingreso extra para quienes sí la tienen.
+            El objetivo es facilitar el acceso a impresiones sin tener una impresora propia, generando un ingreso extra para quienes sí la tienen.
           </p>
 
           <p class="desc">
@@ -389,33 +443,33 @@ h1.sec-title{text-align:center;font-weight:800;font-size:clamp(32px,4vw,56px);ma
           </p>
         </div>
 
-        <!-- EasyTech -->
+        <!-- ==================================== -->
+        <!--              EASYTECH                -->
+        <!-- ==================================== -->
         <div class="proj" id="p2">
-          <div class="preview" aria-hidden="true"></div>
-          <h3>EasyTech</h3>
-          <div class="meta">Diseño UX/UI • Figma</div>
-          <p class="desc">
-            App creada junto a tres compañeras para ayudar a personas mayores a familiarizarse con herramientas como WhatsApp, Instagram y la configuración de dispositivos Android e iOS.
-          </p>
-          <p class="desc">
-            Me encargué del diseño de la interfaz en Figma, priorizando accesibilidad, claridad y simplicidad.
-          </p>
-        </div>
+          <div class="preview" aria-hidden="true">
+            <img src="../videos/easytech.jpeg"
+              alt="Vista previa EasyTech"
+              style="width:100%; height:100%; object-fit:cover; border-radius:14px;">
+          </div>
 
-        <!-- Etiketa -->
-        <div class="proj" id="p3">
-          <div class="preview" aria-hidden="true"></div>
-          <h3>Etiketa</h3>
-          <div class="meta">Algoritmos • Python • Scraping</div>
+          <h3>EasyTech - 2023</h3>
+          <div class="meta">Diseño UX/UI • Figma</div>
+
           <p class="desc">
-            Proyecto que analiza productos cosméticos según sus ingredientes, generando un puntaje de riesgo y detectando combinaciones efectivas.
+            App creada junto a tres compañeras para ayudar a personas mayores a familiarizarse con WhatsApp, Instagram y configuraciones de dispositivos Android/iOS.
           </p>
+
           <p class="desc">
-            Mi rol se centra en la parte técnica: scrapers en Python, base de datos de ingredientes y lógica de scoring.
+            Me encargué del diseño de la interfaz en Figma, priorizando accesibilidad y claridad, usando tutoriales interactivos de aprendizaje lúdico.
           </p>
         </div>
 
       </div>
+
+
+
+
     </div>
   </div>
 </section>
@@ -423,60 +477,330 @@ h1.sec-title{text-align:center;font-weight:800;font-size:clamp(32px,4vw,56px);ma
 
 
 
-<!-- ======== SECCIÓN INTERACTIVA (timeline de pasos) ======== -->
-<section class="split">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ======== MÉTODO DE TRABAJO ======== -->
+<section class="split" id="work-method">
   <aside class="sidebar">
+    <h2 style="color:#fff; font-size:2.2rem; font-weight:900; margin-bottom:28px; text-align:center; margin-top:20px;">
+      Método de trabajo
+    </h2>
+
     <ul id="steps">
+
+      <!-- EXPLORACIÓN -->
       <li class="step active" data-step="1">
         <button>Exploración</button>
         <div class="panelDrop open">
-          <p>Investigo usuarios, problemas y restricciones; prototipos rápidos.</p>
+          <p>
+            Identifico problemas reales, audiencias y restricciones.  
+            Uso entrevistas, benchmark y prototipos rápidos para validar ideas.
+          </p>
         </div>
       </li>
+
+      <!-- DISEÑO -->
       <li class="step locked" data-step="2">
         <button>Diseño</button>
         <div class="panelDrop">
-          <p>UI sistemática, accesibilidad, flujo claro, micro-interacciones.</p>
+          <p>
+            Desarrollo UI clara, accesible y moderna.  
+            Creo sistemas de diseño, interacciones y experiencias consistentes.
+          </p>
         </div>
       </li>
+
+      <!-- IMPLEMENTACIÓN -->
       <li class="step locked" data-step="3">
         <button>Implementación</button>
         <div class="panelDrop">
-          <p>Frontend performante, testeo y handoff con documentación.</p>
+          <p>
+            Construyo el frontend con buenas prácticas, performance y testing.  
+            Documentación clara para handoff e iteración basada en métricas.
+          </p>
         </div>
       </li>
+
     </ul>
   </aside>
 
   <div class="stage" id="stage">
-    <article class="slide" data-step="1">
-      <div style="width:80%;max-width:800px;aspect-ratio:16/9; background:repeating-linear-gradient(45deg,#3a3a3a 0 40px,#444 40px 80px); border-radius:12px"></div>
-      <h2>Mapeo del problema</h2>
-    </article>
 
-    <article class="slide" data-step="2">
-      <div style="width:80%;max-width:800px;aspect-ratio:16/9; background:repeating-linear-gradient(90deg,#333 0 40px,#3f3f3f 40px 80px); border-radius:12px"></div>
-      <h2>Wireframes y UI</h2>
-    </article>
+   
+<!-- SLIDE 1 --> <article class="slide anim" data-step="1"> <img src="https://i.pinimg.com/736x/ef/18/30/ef183093f21b3377ccd410adfa6b2ccb.jpg" class="muñeco" /> </article> <!-- SLIDE 2 --> <article class="slide anim" data-step="2"> <img src="https://i.pinimg.com/1200x/c4/72/e0/c472e00dbc41b58920b816346802459b.jpg" class="muñeco" /> </article> <!-- SLIDE 3 --> <article class="slide anim" data-step="3"> <img src="https://i.pinimg.com/1200x/65/fa/0c/65fa0c9f4780c918a126608bfaced4c4.jpg" class="muñeco" /> </article> </div> </section> <style>
 
-    <article class="slide" data-step="3">
-      <div style="width:80%;max-width:800px;aspect-ratio:16/9; background:repeating-linear-gradient(135deg,#2f2f2f 0 40px,#444 40px 80px); border-radius:12px"></div>
-      <h2>Entrega y métricas</h2>
-    </article>
-  </div>
-</section>
+/* ===== MÉTODO DE TRABAJO ===== */
+
+.split {
+  display: grid;
+  grid-template-columns: 0.9fr 1.5fr;
+  height: 100vh;
+  margin-top: 120px;
+}
+
+/* Sidebar centrada verticalmente */
+.sidebar {
+  background: var(--panel);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 60px;
+  border-right: 1px solid #222;
+}
+
+/* Botones del listado */
+.step {
+  opacity: .35;
+  transition: opacity .25s;
+  list-style: none;
+  margin-bottom: 38px;
+}
+
+.step.active { opacity: 1; }
+
+.step button {
+  all: unset;
+  cursor: pointer;
+  font-size: 1.55rem;
+  font-weight: 900;
+  color: var(--muted);
+  transition: color .25s;
+}
+
+.step.active button { color: #fff; }
+.step.locked button { cursor: not-allowed; opacity: .25; }
+
+/* Párrafo expandible */
+.panelDrop {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .38s, opacity .28s;
+  opacity: 0;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.panelDrop.open { max-height: 260px; opacity: 1; }
+
+.panelDrop p {
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  margin-bottom: 30px;
+}
+
+/* Slides */
+.stage {
+  height: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.slide {
+  height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: #111;
+}
+
+/* IMAGEN MÁS GRANDE Y PROTAGONISTA */
+.muñeco {
+  width: 50%;
+  max-width: 450px;
+  border-radius: 18px;
+  object-fit: contain;
+  filter: grayscale(20%);
+  opacity: 0;
+  transform: translateY(40px) scale(.9);
+  transition: all .9s ease-out;
+
+  /* 🌸💗 Sombra ROSA FLÚOR mucho más intensa y con halo */
+  box-shadow:
+    0 0 35px rgba(255, 0, 150, 0.55),
+    0 0 85px rgba(255, 0, 150, 0.35),
+    0 0 120px rgba(255, 20, 180, 0.25),
+    inset 0 0 25px rgba(255, 0, 120, 0.25);
+}
+
+
+/* TRANSICIÓN CUANDO APARECE */
+.slide.visible .muñeco {
+  opacity: 1;
+  transform: translateY(0px) scale(1);
+}
+
+
+
+/* Animación estilo “muñeco moviéndose” */
+.anim {
+  animation: floatIn 0.8s ease forwards;
+}
+
+/* Botones del listado */
+.step {
+  opacity: .35;
+  transition: opacity .25s;
+  list-style: none;
+  margin-bottom: 38px;
+
+  /* ← ← LÍNEA SEPARADORA NUEVA */
+  padding-bottom: 22px;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+
+/* Para que la última no tenga línea extra */
+.step:last-child {
+  border-bottom: none;
+}
+
+
+@keyframes floatIn {
+  0% { opacity: 0; transform: translateY(50px) scale(.92) rotate(-2deg); }
+  50% { opacity: .6; transform: translateY(10px) scale(.97); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+</style>
+
+<script>
+/* —— Hace que las imágenes se animen cuando entran en pantalla —— */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add("visible");
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll(".slide").forEach(sl => obs.observe(sl));
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- ======== SKILLS ======== -->
-<section class="skills-band" aria-label="Skills">
-  <h2 class="skills-title">Stack y superpoderes</h2>
+<section class="skills-band" id="skills" aria-label="Skills">
+
+  <h2 class="skills-title"> Habilidades Y Recursos</h2>
   <div class="marquee" data-speed="40">
     <ul class="track">
-      <li class="bubble">React</li>
-      <li class="bubble">TypeScript</li>
-      <li class="bubble">CSS Motion</li>
-      <li class="bubble">FastAPI</li>
-      <li class="bubble">Figma</li>
-      <li class="bubble">Testing</li>
+      <li class="bubble">HTML</li>
+      <li class="bubble">CSS</li>
+      <li class="bubble">JAVASCRIPT</li>
+      <li class="bubble">PYTHON</li>
+      <li class="bubble">FIGMA</li>
+        <li class="bubble">SCRAPING</li>
+        <li class="bubble">PANDAS</li>
+        <li class="bubble">SELENIU</li>
+
     </ul>
   </div>
 </section>
@@ -652,4 +976,278 @@ cvForm.addEventListener('submit', e=>{
 });
 </script>
 </body>
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  
+  const folders = document.querySelectorAll(".folder");
+  const projects = document.querySelectorAll(".proj");
+
+  // Todos los videos
+  const videos = document.querySelectorAll(".proj video");
+
+  function showProject(id) {
+    // Ocultar todos los proyectos
+    projects.forEach(p => p.classList.remove("active"));
+
+    // Pausar y resetear todos los videos
+    videos.forEach(v => {
+      v.pause();
+      v.currentTime = 0;
+    });
+
+    // Mostrar el proyecto correspondiente
+    const activeProj = document.getElementById(id);
+    activeProj.classList.add("active");
+
+    // Si el proyecto tiene video → reproducir de cero
+    const vid = activeProj.querySelector("video");
+    if (vid) vid.play();
+  }
+
+  // CLICK en cada carpeta
+  folders.forEach(folder => {
+    folder.addEventListener("click", () => {
+      const projId = folder.dataset.proj;
+
+      // Cambiar selección visual del sidebar
+      folders.forEach(f => f.removeAttribute("aria-selected"));
+      folder.setAttribute("aria-selected", "true");
+
+      // Mostrar el proyecto correcto
+      showProject(projId);
+    });
+  });
+
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 🔵 NAVBAR CV FINAL AJUSTADA -->
+<style>
+  :root{
+    --navTop:60px;
+    --navH:80px;
+    --hambH:56px;
+    --hamburgerRight:24px;
+    --navGapRight:120px;
+  }
+
+  /* Overlay fijo centrado */
+  .navOverlay{
+    position:fixed;
+    left:0; right:0;
+    top:var(--navTop);
+    z-index:60;
+    display:flex;
+    justify-content:center;
+    pointer-events:none;
+  }
+
+  /* NAV */
+  .nav{
+    width:min(1280px, calc(100% - var(--navGapRight) - 48px));
+    height:var(--navH);
+    display:flex;
+    align-items:center;
+
+    /* ⭐ MENÚ CENTRADO */
+    justify-content:center;
+    padding-left:0;
+
+    background:rgba(0,0,0,0.55);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:22px;
+
+    /* ✨ SOFFLUO MOLTO SOTTILE — ROSA */
+    box-shadow:
+      0 0 8px rgba(255, 70, 150, 0.16),
+      0 0 22px rgba(255, 70, 170, 0.10),
+      0 15px 40px rgba(0,0,0,0.45);
+
+    transition:opacity .25s ease, transform .25s ease;
+    opacity:1;
+    pointer-events:auto;
+    transform:translateY(0);
+  }
+
+  /* Oculto */
+  .nav.is-hidden{
+    opacity:0;
+    transform:translateY(-20px);
+    pointer-events:none;
+  }
+
+  /* Menu */
+  .menu{
+    display:flex;
+    align-items:center;
+    gap:44px;
+    font-weight:800;
+  }
+
+  .menu a{
+    color:white;
+    text-decoration:none;
+    font-size:1rem;
+    transition:opacity .2s;
+  }
+
+  .menu a:hover{
+    opacity:.65;
+  }
+
+  /* HAMBURGER con mismo glow rosa */
+  .hamburger{
+    position:fixed;
+    right:var(--hamburgerRight);
+    top:calc(var(--navTop) + (var(--navH) - var(--hambH))/2);
+    z-index:65;
+    width:var(--hambH);
+    height:var(--hambH);
+    border-radius:999px;
+
+    background:rgba(0,0,0,0.55);
+    backdrop-filter:blur(18px);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+
+    border:none;
+    box-shadow:
+      0 0 8px rgba(255, 70, 150, 0.16),
+      0 0 22px rgba(255, 70, 170, 0.10),
+      0 15px 40px rgba(0,0,0,0.45);
+  }
+</style>
+
+<!-- HTML -->
+<div class="navOverlay">
+  <nav class="nav" id="nav">
+    <div class="menu">
+      <a class="navlink" href="#about">Sobre mí</a>
+      <a class="navlink" href="#formacion">Formación</a>
+      <a class="navlink" href="#proyectos">Proyectos</a>
+      <a class="navlink" href="#work-method">Método de trabajo</a>
+      <a class="navlink" href="#skills">Skills</a>
+      <a class="navlink" href="#contacto">Contacto</a>
+    </div>
+  </nav>
+</div>
+
+<button class="hamburger" id="hamburger" aria-expanded="false">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" stroke-width="2">
+    <path d="M3 6h18M3 12h18M3 18h18"/>
+  </svg>
+</button>
+
+<!-- JS -->
+<script>
+  const nav = document.getElementById("nav");
+  const hamburger = document.getElementById("hamburger");
+  const navlinks = document.querySelectorAll(".navlink");
+
+  let lastScroll = 0;
+  let isOpen = false;
+
+  function showNav(){
+    nav.classList.remove("is-hidden");
+    isOpen = true;
+  }
+
+  function hideNav(){
+    nav.classList.add("is-hidden");
+    isOpen = false;
+  }
+
+  function shouldShowOnScrollUp(){
+    return window.scrollY < 120;
+  }
+
+  window.addEventListener("scroll", () => {
+    const current = window.scrollY;
+
+    if(current > lastScroll){
+      hideNav(); // bajando
+    } else {
+      if(shouldShowOnScrollUp()){
+        showNav(); // subiendo y arriba
+      }
+    }
+
+    lastScroll = current;
+  }, { passive:true });
+
+  hamburger.addEventListener("click", () => {
+    if(isOpen){
+      hideNav();
+    } else {
+      showNav();
+    }
+  });
+
+  /* ⭐ Nuevo scroll con offset + no reaparece solo */
+  navlinks.forEach(link => {
+    link.addEventListener("click", function(e) {
+      e.preventDefault();
+
+      const targetId = this.getAttribute("href");
+      const target = document.querySelector(targetId);
+
+      if(!target) return;
+
+      const y = target.getBoundingClientRect().top + window.scrollY;
+
+      const offset = 140; // espacio extra arriba
+
+      window.scrollTo({
+        top: y - offset,
+        behavior: "smooth"
+      });
+
+      hideNav();
+    });
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </html>
